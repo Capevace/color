@@ -1,6 +1,6 @@
 {
     "name": "mateffy/color",
-    "description": "A utility package for working with colors, including manupulation, conversion and formatting.",
+    "description": "A utility package for working with colors, including manipulation, conversion and formatting.",
     "type": "library",
     "minimum-stability": "stable",
     "license": "MIT",
