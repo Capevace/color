@@ -1,4 +1,6 @@
-![Icon](resources/images/icon.webp)
+<p align="center">
+    <img src="resources/images/icon.webp" alt="A rendering of a hacker mixing some colors, the icon for this package" width="350">
+</p>
 
 # `mateffy/color`
 
