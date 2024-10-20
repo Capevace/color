@@ -4,19 +4,19 @@ use Mateffy\Color;
 
 test('It can calculate luminance', function () {
     $color = Color::rgb(255, 0, 0);
-    expect($color->luminance())->toBe(54.213, 0.001);
+    expect(round($color->luminance(), 3))->toBe(54.213);
 
     $color = Color::rgb(0, 255, 0);
-    expect($color->luminance())->toBe(182.376, 0.001);
+    expect(round($color->luminance(), 3))->toBe(182.376);
 
     $color = Color::rgb(0, 0, 255);
-    expect($color->luminance())->toBe(18.411, 0.001);
+    expect(round($color->luminance(), 3))->toBe(18.411);
 
     $color = Color::rgb(255, 255, 255);
-    expect($color->luminance())->toBe(255.0, 0.001);
+    expect(round($color->luminance(), 3))->toBe(255.0);
 
     $color = Color::rgb(0, 0, 0);
-    expect($color->luminance())->toBe(0.0, 0.001);
+    expect(round($color->luminance(), 3))->toBe(0.0);
 });
 
 test('It can calculate human luminance', function () {
