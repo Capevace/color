@@ -6,7 +6,7 @@
 <h3 align="center">A powerful color manipulation library for PHP / Laravel with a focus on DX and simplicity with great support for Tailwind and Filament color definitions.</h3>
 
 <p align="center">
-    <img src="https://github.com/capevace/color/actions/workflows/tests/badge.svg" alt="Test status">
+    <img src="https://github.com/Capevace/color/actions/workflows/tests.yml/badge.svg" alt="Test status">
 </p>
 
 
