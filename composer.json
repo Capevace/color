@@ -1,0 +1,20 @@
+{
+    "name": "mateffy/color",
+    "description": "A utility package for working with colors, including manupulation, conversion and formatting.",
+    "type": "library",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lukas Mateffy",
+            "email": "hey@mateffy.me"
+        }
+    ],
+    "require": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Mateffy\\": "src/"
+        }
+    }
+}
