@@ -8,6 +8,12 @@ trait HSL
 	 * Modifiers
 	 */
 
+    /**
+     * Set or add the hue value
+     *
+     * @param float $hue Degree between 0.0 and 360.0
+     * @param bool $add Whether to add the value or set it, defaults to false
+     */
 	public function hue(float $hue, bool $add = false): static
 	{
 		[$oldHue, $saturation, $lightness, $alpha] = static::rgbaToHsla($this->red, $this->green, $this->blue, $this->alpha);
@@ -19,6 +25,12 @@ trait HSL
 		return static::hsl($hue, $saturation, $lightness, $alpha);
 	}
 
+    /**
+     * Set or add the saturation
+     *
+     * @param float $saturation Percentage between 0.0 and 100.0
+     * @param bool $add Whether to add the value or set it, defaults to false
+     */
 	public function saturation(float $saturation, bool $add = false): static
 	{
 		[$hue, $oldSaturation, $lightness, $alpha] = static::rgbaToHsla($this->red, $this->green, $this->blue, $this->alpha);
@@ -30,6 +42,12 @@ trait HSL
 		return static::hsl($hue, $saturation, $lightness, $alpha);
 	}
 
+    /**
+     * Set or add the lightness
+     *
+     * @param float $lightness Percentage between 0.0 and 100.0
+     * @param bool $add Whether to add the value or set it, defaults to false
+     */
 	public function lightness(float $lightness, bool $add = false): static
 	{
 		[$hue, $saturation, $oldLightness, $alpha] = static::rgbaToHsla($this->red, $this->green, $this->blue, $this->alpha);
@@ -47,6 +65,14 @@ trait HSL
 	 * Exporters
 	 */
 
+    /**
+     * Get the HSL values as an array ([0..360.0, 0..100.0, 0..100.0])
+     *
+     * @example [0, 100, 50]
+     * @example [120, 100, 50]
+     *
+     * @return array{0: float, 1: float, 2: float}
+     */
 	public function toHsl(): array
 	{
 		[$h, $s, $l] = static::rgbaToHsla($this->red, $this->green, $this->blue, $this->alpha);
@@ -54,6 +80,14 @@ trait HSL
 		return [$h, $s, $l];
 	}
 
+    /**
+     * Get the HSLA values as an array ([0..360.0, 0..100.0, 0..100.0, 0.0..1.0])
+     *
+     * @example [0, 100, 50, 0.5]
+     * @example [120, 100, 50, 0.5]
+     *
+     * @return array{0: float, 1: float, 2: float, 3: float}
+     */
 	public function toHsla(): array
 	{
 		[$h, $s, $l, $a] = static::rgbaToHsla($this->red, $this->green, $this->blue, $this->alpha);
@@ -61,6 +95,12 @@ trait HSL
 		return [$h, $s, $l, $a];
 	}
 
+    /**
+     * Get the HSL values as a string (`hsl(0..360.0, 0..100.0%, 0..100.0%)`)
+     *
+     * @example 'hsl(0, 100%, 50%)'
+     * @example 'hsl(120, 100%, 50%)'
+     */
 	public function toHslString(): string
 	{
 		[$hue, $saturation, $lightness, $_] = static::rgbaToHsla($this->red, $this->green, $this->blue, $this->alpha);
@@ -73,6 +113,12 @@ trait HSL
 		);
 	}
 
+    /**
+     * Get the HSLA values as a string (`hsla(0..360.0, 0..100.0%, 0..100.0%, 0.0..1.0)`)
+     *
+     * @example 'hsla(0, 100%, 50%, 0.5)'
+     * @example 'hsla(120, 100%, 50%, 0.5)'
+     */
 	public function toHslaString(): string
 	{
 		[$hue, $saturation, $lightness, $alpha] = static::rgbaToHsla($this->red, $this->green, $this->blue, $this->alpha);
@@ -82,7 +128,7 @@ trait HSL
 			$hue,
 			$saturation,
 			$lightness,
-			rtrim(rtrim(sprintf('%f', $this->alpha), '0'), '.')
+			rtrim(rtrim(sprintf('%f', $alpha), '0'), '.')
 		);
 	}
 
@@ -92,6 +138,14 @@ trait HSL
 	 * Factories
 	 */
 
+    /**
+     * Create a `Color` instance form HSL values. An optional alpha value can be passed.
+     *
+     * @param float $hue Degree between 0.0 and 360.0
+     * @param float $saturation Percentage between 0.0 and 100.0
+     * @param float $lightness Percentage between 0.0 and 100.0
+     * @param float $alpha Float between 0.0 and 1.0
+     */
 	public static function hsl(float $hue, float $saturation, float $lightness, float $alpha = 1.0): static
 	{
 		[$r, $g, $b, $a] = static::hslaToRgba($hue, $saturation, $lightness, $alpha);
@@ -105,6 +159,14 @@ trait HSL
 	 * Converters
 	 */
 
+    /**
+     * Convert HSLA to RGBA
+     *
+     * @param float $hue Degree between 0.0 and 360.0
+     * @param float $saturation Percentage between 0.0 and 100.0
+     * @param float $lightness Percentage between 0.0 and 100.0
+     * @param float $alpha Float between 0.0 and 1.0
+     */
 	protected static function hslaToRgba(float $hue, float $saturation, float $lightness, float $alpha = 1.0): array
 	{
         $saturation /= 100;
@@ -147,6 +209,14 @@ trait HSL
         return [$r, $g, $b, $alpha];
     }
 
+    /**
+     * Convert RGBA to HSLA
+     *
+     * @param int $r Integer between 0 and 255
+     * @param int $g Integer between 0 and 255
+     * @param int $b Integer between 0 and 255
+     * @param float $a Float between 0.0 and 1.0
+     */
 	protected static function rgbaToHsla(int $r, int $g, int $b, float $a = 1.0): array
 	{
         $r /= 255;

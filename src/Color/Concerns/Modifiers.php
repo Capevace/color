@@ -54,49 +54,6 @@ trait Modifiers
     }
 
     /**
-     * Adjust the brightness of the color.
-     *
-     * @param float $amount Amount to adjust brightness, between -1 and 1
-     * @return static
-     */
-    public function adjustBrightness(float $amount): static
-    {
-        $amount = max(-1, min(1, $amount));
-        $adjustment = $amount > 0 
-            ? (255 - max($this->red, $this->green, $this->blue)) * $amount 
-            : max($this->red, $this->green, $this->blue) * $amount;
-
-        return new static(
-            max(0, min(255, $this->red + $adjustment)),
-            max(0, min(255, $this->green + $adjustment)),
-            max(0, min(255, $this->blue + $adjustment)),
-            $this->alpha
-        );
-    }
-
-    /**
-     * Lighten the color.
-     *
-     * @param float $amount Amount to lighten, between 0 and 1
-     * @return static
-     */
-    public function lighten(float $amount): static
-    {
-        return $this->adjustBrightness(abs($amount));
-    }
-
-    /**
-     * Darken the color.
-     *
-     * @param float $amount Amount to darken, between 0 and 1
-     * @return static
-     */
-    public function darken(float $amount): static
-    {
-        return $this->adjustBrightness(-abs($amount));
-    }
-
-    /**
      * Create the complementary color.
      *
      * @return static

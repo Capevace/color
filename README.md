@@ -24,15 +24,26 @@
  
 use Mateffy\Color;
 
-$color = Color::fromHex('#ff0000')
+$color = Color::hex('#ff0000')
     ->hue(25, add: true) // Adds 25 to the current hue
     ->saturation(0.5) // Sets the current saturation to 0.5
     ->alpha(0.5); // Sets the current alpha to 0.5
 
-$rgb = $color->toRgb(); // [255, 0, 0]
-$hsl = $color->toHsl(); // [1, 1, 0.5]
+/* Hex */
 $hex1 = $color->toHex(); // '#ff0000'
 $hex2 = $color->toHex(alpha: true); // '#ff0000ff'
+
+/* RGB */
+$rgb = $color->toRgb(); // [255, 0, 0]
+$rgba = $color->toRgba(); // [255, 0, 0, 0.5]
+$rgbString = $color->toRgbString(); // 'rgb(255, 0, 0)'
+$rgbValueString = $color->toRgbValueString(); // '255, 0, 0' for Tailwind and Filament
+
+/* HSL */
+$hsl = $color->toHsl(); // [1, 1, 0.5]
+$hsla = $color->toHsla(); // [1, 1, 0.5, 0.5]
+$hslString = $color->toHslString(); // 'hsl(1, 1%, 50%)'
+$hslValueString = $color->toHslaString(); // 'hsla(1, 1%, 50%, 0.5)' 
 
 /**
  * Shades functionality
