@@ -102,10 +102,11 @@ $color = Color::hex('#ff0000');
 $color = Color::rgb(255, 0, 0);
 
 // From RGBA values (including alpha)
-$color = Color::rgb(255, 0, 0, 0.5);
+$color = Color::rgb(red: 255, green: 0, blue: 0, alpha: 0.5);
 
 // From HSL values
 $color = Color::hsl(0, 1, 0.5);
+$color = Color::hsl(hue: 0, saturation: 1, lightness: 0.5, alpha: 0.5);
 ```
 
 #### Modifying Colors
@@ -179,11 +180,11 @@ use Mateffy\Color\Shades;
 // From Tailwind color palette
 $indigo = Shades::tailwind('indigo');
 
-// From Filament color palette
-$primary = Shades::filament('primary');
-
 // Generate shades from a single color
 $redShades = Shades::color(Color::hex('#ff0000'));
+
+// From Filament color palette (requires Filament to be installed)
+$primary = Shades::filament('primary');
 ```
 
 #### Accessing Shades
@@ -191,7 +192,7 @@ $redShades = Shades::color(Color::hex('#ff0000'));
 You can access individual shades using either object properties or array syntax:
 
 ```php
-// Using object properties
+// Using object properties (returns a `Mateffy\Color` instance)
 $shade500 = $indigo->shade500;
 
 // Using array syntax
@@ -212,46 +213,6 @@ echo $indigo->shade500->toHexString(); // '#6366f1'
 // Output a specific shade as RGB
 echo $indigo['600']->toRgbString(); // 'rgb(79, 70, 229)'
 ```
-
-### Practical Examples
-
-1. Generating a color palette for a theme:
-
-```php
-$baseColor = Color::hex('#3498db');
-$palette = [
-    'primary' => $baseColor,
-    'secondary' => $baseColor->hue(30, add: true),
-    'accent' => $baseColor->complementary(),
-    'light' => $baseColor->lightness(0.9),
-    'dark' => $baseColor->lightness(0.1),
-];
-
-foreach ($palette as $name => $color) {
-    echo "$name: " . $color->toHexString() . "\n";
-}
-```
-
-2. Creating a Filament color scheme:
-
-```php
-use Mateffy\Color;
-use Mateffy\Color\Shades;
-
-// In your AppServiceProvider or similar
-$primaryColor = Color::hex(config('app.primary_color', '#3498db'));
-
-$provider
-    ->colors([
-        'primary' => Shades::color($primaryColor),
-        'secondary' => Shades::color($primaryColor->hue(30, add: true)),
-        'success' => Shades::color(Color::hex('#2ecc71')),
-        'warning' => Shades::color(Color::hex('#f39c12')),
-        'danger' => Shades::color(Color::hex('#e74c3c')),
-    ]);
-```
-
-This comprehensive usage guide should help users understand how to create, modify, and output colors and shades using the library.
 
 ## Changelog
 
