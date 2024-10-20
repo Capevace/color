@@ -4,36 +4,36 @@ use Mateffy\Color;
 
 test('It can calculate luminance', function () {
     $color = Color::rgb(255, 0, 0);
-    expect($color->luminance())->toBeCloseTo(54.213, 3);
+    expect($color->luminance())->toBe(54.213, 0.001);
 
     $color = Color::rgb(0, 255, 0);
-    expect($color->luminance())->toBeCloseTo(182.376, 3);
+    expect($color->luminance())->toBe(182.376, 0.001);
 
     $color = Color::rgb(0, 0, 255);
-    expect($color->luminance())->toBeCloseTo(18.411, 3);
+    expect($color->luminance())->toBe(18.411, 0.001);
 
     $color = Color::rgb(255, 255, 255);
-    expect($color->luminance())->toBeCloseTo(255, 3);
+    expect($color->luminance())->toBe(255.0, 0.001);
 
     $color = Color::rgb(0, 0, 0);
-    expect($color->luminance())->toBeCloseTo(0, 3);
+    expect($color->luminance())->toBe(0.0, 0.001);
 });
 
 test('It can calculate human luminance', function () {
     $color = Color::rgb(255, 0, 0);
-    expect($color->humanLuminance())->toBeCloseTo(0.299, 3);
+    expect($color->humanLuminance())->toBe(0.299, 0.001);
 
     $color = Color::rgb(0, 255, 0);
-    expect($color->humanLuminance())->toBeCloseTo(0.587, 3);
+    expect($color->humanLuminance())->toBe(0.587, 0.001);
 
     $color = Color::rgb(0, 0, 255);
-    expect($color->humanLuminance())->toBeCloseTo(0.114, 3);
+    expect($color->humanLuminance())->toBe(0.114, 0.001);
 
     $color = Color::rgb(255, 255, 255);
-    expect($color->humanLuminance())->toBeCloseTo(0, 3);
+    expect($color->humanLuminance())->toBe(0.0, 0.001);
 
     $color = Color::rgb(0, 0, 0);
-    expect($color->humanLuminance())->toBeCloseTo(1, 3);
+    expect($color->humanLuminance())->toBe(1.0, 0.001);
 });
 
 test('It can determine if a color needs light foreground', function () {
