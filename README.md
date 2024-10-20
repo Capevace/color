@@ -1,12 +1,15 @@
 <p align="center">
-    <img src="resources/images/icon.webp" alt="A rendering of a hacker mixing some colors, the icon for this package" width="350">
+<img src="https://github.com/user-attachments/assets/1b8d18b4-dcf7-4449-80e3-8582e6ea198f" width="700" >
+
 </p>
 
-<h1 align="center"><code>mateffy/color</code></h1>
-<h3 align="center">A powerful color manipulation library for PHP / Laravel with a focus on DX and simplicity with great support for Tailwind and Filament color definitions.</h3>
+<br>
 
+<h1><code>mateffy/color</code> </h1>
+<h3>A powerful color manipulation library for PHP / Laravel with a focus on DX and simplicity with great support for Tailwind and Filament color definitions.</h3>
+<img src="https://github.com/Capevace/color/actions/workflows/tests.yml/badge.svg" alt="Test status" style="float: right">
 <p align="center">
-    <img src="https://github.com/Capevace/color/actions/workflows/tests.yml/badge.svg" alt="Test status">
+    
 </p>
 
 
