@@ -142,6 +142,9 @@ You can output colors in various formats:
 // As hexadecimal string
 echo $color->toHexString(); // '#ff0000'
 echo $color->toHexString(alpha: true); // '#ff0000ff'
+echo $color->toHexString(uppercase: true); // '#FF0000'
+echo $color->toHexString(hash: false); // 'ff0000'
+echo $color->toHexString(alpha: true, uppercase: true, hash: false); // 'FF0000FF'
 
 // As RGB array
 print_r($color->toRgb()); // [255, 0, 0]
@@ -154,6 +157,9 @@ echo $color->toRgbString(); // 'rgb(255, 0, 0)'
 
 // As RGBA string
 echo $color->toRgbaString(); // 'rgba(255, 0, 0, 1)'
+
+// As RGB value string (useful for Tailwind and Filament)
+echo $color->toRgbValueString(); // '255, 0, 0'
 
 // As HSL array
 print_r($color->toHsl()); // [0, 1, 0.5]
