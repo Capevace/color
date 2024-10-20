@@ -87,3 +87,31 @@ test('It can format a color as hex string without hash', function (array $rgb, s
         [[255, 255, 255], 'ffffff', 'ffffffff'],
         [[255, 0, 0, 0.5], 'ff0000', 'ff00007f'],
     ]);
+
+test('It can format a color as HSL string', function (array $rgb, string $expected) {
+    $color = Color::rgb(...$rgb);
+    expect($color->toHslString())->toBe($expected);
+})
+    ->with([
+        [[255, 0, 0], 'hsl(0, 100%, 50%)'],
+        [[0, 255, 0], 'hsl(120, 100%, 50%)'],
+        [[0, 0, 255], 'hsl(240, 100%, 50%)'],
+        [[128, 128, 128], 'hsl(0, 0%, 50%)'],
+        [[0, 0, 0], 'hsl(0, 0%, 0%)'],
+        [[255, 255, 255], 'hsl(0, 0%, 100%)'],
+        [[255, 128, 0], 'hsl(30, 100%, 50%)'],
+    ]);
+
+test('It can format a color as HSLA string', function (array $rgba, string $expected) {
+    $color = Color::rgb(...$rgba);
+    expect($color->toHslaString())->toBe($expected);
+})
+    ->with([
+        [[255, 0, 0, 1], 'hsla(0, 100%, 50%, 1)'],
+        [[0, 255, 0, 0.5], 'hsla(120, 100%, 50%, 0.5)'],
+        [[0, 0, 255, 0.25], 'hsla(240, 100%, 50%, 0.25)'],
+        [[128, 128, 128, 0.75], 'hsla(0, 0%, 50%, 0.75)'],
+        [[0, 0, 0, 0], 'hsla(0, 0%, 0%, 0)'],
+        [[255, 255, 255, 1], 'hsla(0, 0%, 100%, 1)'],
+        [[255, 128, 0, 0.8], 'hsla(30, 100%, 50%, 0.8)'],
+    ]);
