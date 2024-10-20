@@ -176,10 +176,27 @@ echo $color->toHslaString(); // 'hsla(0, 100%, 50%, 1)'
 
 ### Working with Shades
 
-Shades are variations of a single color, typically ranging from very light to very dark. They are essential in design for creating depth, contrast, and visual hierarchy. In this library, shades are represented as a collection of colors, usually including 11 variations labeled from 50 (lightest) to 950 (darkest), with 500 being the base color.
+Shades are variations of a single color, typically ranging from very light to very dark. In this library, shades are represented as a collection of colors, usually including 11 variations labeled from 50 (lightest) to 950 (darkest), with 500 being the base color.
+They are a key component in design systems like Tailwind CSS and Filament, which use predefined shade palettes for their color schemes.
 
-Shades are particularly useful in web design and user interface development, as they allow for consistent color schemes and easy adaptation to different contexts (e.g., light mode vs. dark mode). They are a key component in design systems like Tailwind CSS and Filament, which use predefined shade palettes for their color schemes.
+```php
+// Example shades
+$shades = [
+    '50' => '#f9fafb',
+    '100' => '#f3f4f6',
+    '200' => '#e5e7eb',
+    '300' => '#d1d5db',
+    '400' => '#9ca3af',
+    '500' => '#6b7280',
+    '600' => '#4b5563',
+    '700' => '#374151',
+    '800' => '#1f2937',
+    '900' => '#111827',
+    '950' => '#0f172a'
+];
+```
 
+This library proivides the `Shades` class, which contains a variety of methods for working with shades in a type-safe and fluent way.
 #### Creating Shades
 
 You can create shades using predefined color palettes or generate them from a single color:
@@ -205,10 +222,32 @@ You can access individual shades using either object properties or array syntax:
 
 ```php
 // Using object properties (returns a `Mateffy\Color` instance)
+$shade50 = $indigo->shade50;
+$shade100 = $indigo->shade100;
+$shade200 = $indigo->shade200;
+$shade300 = $indigo->shade300;
+$shade400 = $indigo->shade400;
 $shade500 = $indigo->shade500;
+$shade600 = $indigo->shade600;
+$shade700 = $indigo->shade700;
+$shade800 = $indigo->shade800;
+$shade900 = $indigo->shade900;
+$shade950 = $indigo->shade950;
 
 // Using array syntax
+$shade50 = $indigo['50'];
+$shade100 = $indigo['100'];
+$shade200 = $indigo['200'];
+$shade300 = $indigo['300'];
+$shade400 = $indigo['400'];
+$shade500 = $indigo['500'];
 $shade600 = $indigo['600'];
+$shade700 = $indigo['700'];
+$shade800 = $indigo['800'];
+$shade900 = $indigo['900'];
+$shade950 = $indigo['950'];
+
+echo $shade50::class; // Mateffy\Color
 ```
 
 #### Outputting Shades
@@ -217,7 +256,17 @@ You can output all shades or individual shades in various formats:
 
 ```php
 // Output all shades as an array
+/** @var array<string, Mateffy\Color> $shadesArray */
 $shadesArray = $indigo->toArray();
+
+/** @var array<string, string> $hexArray */
+$hexArray = $indigo->toHexArray(hash: true, uppercase: false, alpha: false); 
+// ['50' => '#6366f1', '100' => '#4f46e5', ...]
+
+/** @var array<string, string> $rgbArray */
+$rgbValueStringArray = $indigo->toRgbValueStringArray();
+// ['50' => '255, 255, 255', '100' => '255, 255, 255', ...]
+
 
 // Output a specific shade as hex
 echo $indigo->shade500->toHexString(); // '#6366f1'

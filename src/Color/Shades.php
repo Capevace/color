@@ -83,20 +83,20 @@ readonly class Shades implements \JsonSerializable, \ArrayAccess, \IteratorAggre
      *
 	 * @return array<string, Color>
 	 */
-	public function toHexArray(bool $hash = true, bool $alpha = false): array
+	public function toHexArray(bool $hash = true, bool $uppercase = false, bool $alpha = false): array
 	{
 		return [
-			'50' => $this->shade50->toHexString(alpha: $alpha, hash: $hash),
-			'100' => $this->shade100->toHexString(alpha: $alpha, hash: $hash),
-			'200' => $this->shade200->toHexString(alpha: $alpha, hash: $hash),
-			'300' => $this->shade300->toHexString(alpha: $alpha, hash: $hash),
-			'400' => $this->shade400->toHexString(alpha: $alpha, hash: $hash),
-			'500' => $this->shade500->toHexString(alpha: $alpha, hash: $hash),
-			'600' => $this->shade600->toHexString(alpha: $alpha, hash: $hash),
-			'700' => $this->shade700->toHexString(alpha: $alpha, hash: $hash),
-			'800' => $this->shade800->toHexString(alpha: $alpha, hash: $hash),
-			'900' => $this->shade900->toHexString(alpha: $alpha, hash: $hash),
-			'950' => $this->shade950->toHexString(alpha: $alpha, hash: $hash),
+			'50' => $this->shade50->toHexString(alpha: $alpha, uppercase: $uppercase, hash: $hash),
+			'100' => $this->shade100->toHexString(alpha: $alpha, uppercase: $uppercase, hash: $hash),
+			'200' => $this->shade200->toHexString(alpha: $alpha, uppercase: $uppercase, hash: $hash),
+			'300' => $this->shade300->toHexString(alpha: $alpha, uppercase: $uppercase, hash: $hash),
+			'400' => $this->shade400->toHexString(alpha: $alpha, uppercase: $uppercase, hash: $hash),
+			'500' => $this->shade500->toHexString(alpha: $alpha, uppercase: $uppercase, hash: $hash),
+			'600' => $this->shade600->toHexString(alpha: $alpha, uppercase: $uppercase, hash: $hash),
+			'700' => $this->shade700->toHexString(alpha: $alpha, uppercase: $uppercase, hash: $hash),
+			'800' => $this->shade800->toHexString(alpha: $alpha, uppercase: $uppercase, hash: $hash),
+			'900' => $this->shade900->toHexString(alpha: $alpha, uppercase: $uppercase, hash: $hash),
+			'950' => $this->shade950->toHexString(alpha: $alpha, uppercase: $uppercase, hash: $hash),
 		];
 	}
 
