@@ -34,12 +34,13 @@ test('It can format a color as RGB value string', function (array $rgb, string $
     expect($color->toRgbValueString())->toBe($expected);
 })
     ->with([
-        [[255, 0, 0], '255 0 0'],
-        [[0, 255, 0], '0 255 0'],
-        [[0, 0, 255], '0 0 255'],
-        [[128, 128, 128], '128 128 128'],
-        [[0, 0, 0], '0 0 0'],
-        [[255, 255, 255], '255 255 255'],
+        [[255, 0, 0], '255, 0, 0'],
+        [[0, 255, 0], '0, 255, 0'],
+        [[0, 0, 255], '0, 0, 255'],
+        [[128, 128, 128], '128, 128, 128'],
+        [[0, 0, 0], '0, 0, 0'],
+        [[255, 255, 255], '255, 255, 255'],
+        [[255, 0, 0, 0.5], '255, 0, 0'],
     ]);
 
 test('It can format a color as hex string', function (array $rgb, string $expected, string $expectedWithAlpha) {
@@ -54,7 +55,7 @@ test('It can format a color as hex string', function (array $rgb, string $expect
         [[128, 128, 128], '#808080', '#808080ff'],
         [[0, 0, 0], '#000000', '#000000ff'],
         [[255, 255, 255], '#ffffff', '#ffffffff'],
-        [[255, 0, 0, 0.5], '#ff0000', '#ff000080'],
+        [[255, 0, 0, 0.5], '#ff0000', '#ff00007f'],
     ]);
 
 test('It can format a color as hex string with uppercase', function (array $rgb, string $expected, string $expectedWithAlpha) {
@@ -69,7 +70,7 @@ test('It can format a color as hex string with uppercase', function (array $rgb,
         [[128, 128, 128], '#808080', '#808080FF'],
         [[0, 0, 0], '#000000', '#000000FF'],
         [[255, 255, 255], '#FFFFFF', '#FFFFFFFF'],
-        [[255, 0, 0, 0.5], '#FF0000', '#FF000080'],
+        [[255, 0, 0, 0.5], '#FF0000', '#FF00007F'],
     ]);
 
 test('It can format a color as hex string without hash', function (array $rgb, string $expected, string $expectedWithAlpha) {
@@ -84,5 +85,5 @@ test('It can format a color as hex string without hash', function (array $rgb, s
         [[128, 128, 128], '808080', '808080ff'],
         [[0, 0, 0], '000000', '000000ff'],
         [[255, 255, 255], 'ffffff', 'ffffffff'],
-        [[255, 0, 0, 0.5], 'ff0000', 'ff000080'],
+        [[255, 0, 0, 0.5], 'ff0000', 'ff00007f'],
     ]);
