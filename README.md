@@ -86,7 +86,172 @@ composer require mateffy/color
 
 ## Usage
 
-TODO: Complete documentation
+### Working with Colors
+
+#### Creating Colors
+
+You can create color instances using various methods:
+
+```php
+use Mateffy\Color;
+
+// From hexadecimal string
+$color = Color::hex('#ff0000');
+
+// From RGB values
+$color = Color::rgb(255, 0, 0);
+
+// From RGBA values (including alpha)
+$color = Color::rgb(255, 0, 0, 0.5);
+
+// From HSL values
+$color = Color::hsl(0, 1, 0.5);
+```
+
+#### Modifying Colors
+
+Once you have a color instance, you can modify it using various methods:
+
+```php
+// Adjust hue (0-360 degrees)
+$newColor = $color->hue(30); // Set hue to 30 degrees
+$newColor = $color->hue(30, add: true); // Add 30 degrees to current hue
+
+// Adjust saturation (0-1)
+$newColor = $color->saturation(0.5); // Set saturation to 50%
+
+// Adjust lightness (0-1)
+$newColor = $color->lightness(0.7); // Set lightness to 70%
+
+// Adjust alpha (0-1)
+$newColor = $color->alpha(0.5); // Set alpha to 50%
+
+// Invert the color
+$invertedColor = $color->invert();
+
+// Get complementary color
+$complementaryColor = $color->complementary();
+```
+
+#### Outputting Colors
+
+You can output colors in various formats:
+
+```php
+// As hexadecimal string
+echo $color->toHexString(); // '#ff0000'
+echo $color->toHexString(alpha: true); // '#ff0000ff'
+
+// As RGB array
+print_r($color->toRgb()); // [255, 0, 0]
+
+// As RGBA array
+print_r($color->toRgba()); // [255, 0, 0, 1]
+
+// As RGB string
+echo $color->toRgbString(); // 'rgb(255, 0, 0)'
+
+// As RGBA string
+echo $color->toRgbaString(); // 'rgba(255, 0, 0, 1)'
+
+// As HSL array
+print_r($color->toHsl()); // [0, 1, 0.5]
+
+// As HSLA array
+print_r($color->toHsla()); // [0, 1, 0.5, 1]
+
+// As HSL string
+echo $color->toHslString(); // 'hsl(0, 100%, 50%)'
+
+// As HSLA string
+echo $color->toHslaString(); // 'hsla(0, 100%, 50%, 1)'
+```
+
+### Working with Shades
+
+#### Creating Shades
+
+You can create shades using predefined color palettes or generate them from a single color:
+
+```php
+use Mateffy\Color\Shades;
+
+// From Tailwind color palette
+$indigo = Shades::tailwind('indigo');
+
+// From Filament color palette
+$primary = Shades::filament('primary');
+
+// Generate shades from a single color
+$redShades = Shades::color(Color::hex('#ff0000'));
+```
+
+#### Accessing Shades
+
+You can access individual shades using either object properties or array syntax:
+
+```php
+// Using object properties
+$shade500 = $indigo->shade500;
+
+// Using array syntax
+$shade600 = $indigo['600'];
+```
+
+#### Outputting Shades
+
+You can output all shades or individual shades in various formats:
+
+```php
+// Output all shades as an array
+$shadesArray = $indigo->toArray();
+
+// Output a specific shade as hex
+echo $indigo->shade500->toHexString(); // '#6366f1'
+
+// Output a specific shade as RGB
+echo $indigo['600']->toRgbString(); // 'rgb(79, 70, 229)'
+```
+
+### Practical Examples
+
+1. Generating a color palette for a theme:
+
+```php
+$baseColor = Color::hex('#3498db');
+$palette = [
+    'primary' => $baseColor,
+    'secondary' => $baseColor->hue(30, add: true),
+    'accent' => $baseColor->complementary(),
+    'light' => $baseColor->lightness(0.9),
+    'dark' => $baseColor->lightness(0.1),
+];
+
+foreach ($palette as $name => $color) {
+    echo "$name: " . $color->toHexString() . "\n";
+}
+```
+
+2. Creating a Filament color scheme:
+
+```php
+use Mateffy\Color;
+use Mateffy\Color\Shades;
+
+// In your AppServiceProvider or similar
+$primaryColor = Color::hex(config('app.primary_color', '#3498db'));
+
+$provider
+    ->colors([
+        'primary' => Shades::color($primaryColor),
+        'secondary' => Shades::color($primaryColor->hue(30, add: true)),
+        'success' => Shades::color(Color::hex('#2ecc71')),
+        'warning' => Shades::color(Color::hex('#f39c12')),
+        'danger' => Shades::color(Color::hex('#e74c3c')),
+    ]);
+```
+
+This comprehensive usage guide should help users understand how to create, modify, and output colors and shades using the library.
 
 ## Changelog
 
