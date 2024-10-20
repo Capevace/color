@@ -2,9 +2,9 @@
     <img src="resources/images/icon.webp" alt="A rendering of a hacker mixing some colors, the icon for this package" width="350">
 </p>
 
-# `mateffy/color`
+<h1 align="center"><code>mateffy/color</code></h1>
+<h4 align="center">A powerful color manipulation library for PHP / Laravel with a focus on DX and simplicity with great support for Tailwind and Filament color definitions.</h4>
 
-#### A powerful color manipulation library for PHP / Laravel with a focus on DX and simplicity with great support for Tailwind and Filament color definitions.
 
 <br>
 
