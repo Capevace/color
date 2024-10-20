@@ -176,6 +176,10 @@ echo $color->toHslaString(); // 'hsla(0, 100%, 50%, 1)'
 
 ### Working with Shades
 
+Shades are variations of a single color, typically ranging from very light to very dark. They are essential in design for creating depth, contrast, and visual hierarchy. In this library, shades are represented as a collection of colors, usually including 11 variations labeled from 50 (lightest) to 950 (darkest), with 500 being the base color.
+
+Shades are particularly useful in web design and user interface development, as they allow for consistent color schemes and easy adaptation to different contexts (e.g., light mode vs. dark mode). They are a key component in design systems like Tailwind CSS and Filament, which use predefined shade palettes for their color schemes.
+
 #### Creating Shades
 
 You can create shades using predefined color palettes or generate them from a single color:
@@ -192,6 +196,8 @@ $redShades = Shades::color(Color::hex('#ff0000'));
 // From Filament color palette (requires Filament to be installed)
 $primary = Shades::filament('primary');
 ```
+
+When you generate shades from a single color, the library automatically creates a range of lighter and darker variations, giving you a full palette to work with. This is particularly useful when you need to create a custom color scheme based on a specific brand color.
 
 #### Accessing Shades
 
