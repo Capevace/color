@@ -88,6 +88,21 @@ test('It can format a color as hex string without hash', function (array $rgb, s
         [[255, 0, 0, 0.5], 'ff0000', 'ff00007f'],
     ]);
 
+test('It can format a color as hex string without hash', function (array $rgb, string $expected, string $expectedWithAlpha) {
+    $color = Color::rgb(...$rgb);
+    expect($color->toHexString(hash: false))->toBe($expected);
+    expect($color->toHexString(alpha: true, hash: false))->toBe($expectedWithAlpha);
+})
+    ->with([
+        [[255, 0, 0], 'ff0000', 'ff0000ff'],
+        [[0, 255, 0], '00ff00', '00ff00ff'],
+        [[0, 0, 255], '0000ff', '0000ffff'],
+        [[128, 128, 128], '808080', '808080ff'],
+        [[0, 0, 0], '000000', '000000ff'],
+        [[255, 255, 255], 'ffffff', 'ffffffff'],
+        [[255, 0, 0, 0.5], 'ff0000', 'ff00007f'],
+    ]);
+
 test('It can format a color as HSL string', function (array $rgb, string $expected) {
     $color = Color::rgb(...$rgb);
     expect($color->toHslString())->toBe($expected);
